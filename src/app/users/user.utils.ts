@@ -1,5 +1,3 @@
-// user.utils.ts - Updated with better mock data structure
-
 export interface User {
   id: string;
   name: string;
@@ -22,7 +20,6 @@ export interface Photo {
   location: string;
 }
 
-// Enhanced mock data for testing
 export const mockUsers: User[] = [
   {
     id: '1',
@@ -100,6 +97,60 @@ export const mockUsers: User[] = [
             url: 'https://picsum.photos/300/300?random=9',
             label: 'Street Art',
             location: 'New York',
+          },
+        ],
+      },
+      {
+        id: 'collection-4',
+        date: '2025-01-05',
+        photosList: [
+          {
+            id: 'photo-24',
+            url: 'https://picsum.photos/300/300?random=24',
+            label: 'Waterfall',
+            location: 'Iceland',
+          },
+          {
+            id: 'photo-25',
+            url: 'https://picsum.photos/300/300?random=25',
+            label: 'Ice Cave',
+            location: 'Iceland',
+          },
+        ],
+      },
+      {
+        id: 'collection-5',
+        date: '2025-01-10',
+        photosList: [
+          {
+            id: 'photo-26',
+            url: 'https://picsum.photos/300/300?random=26',
+            label: 'Safari Jeep',
+            location: 'Kenya',
+          },
+          {
+            id: 'photo-27',
+            url: 'https://picsum.photos/300/300?random=27',
+            label: 'Elephants',
+            location: 'Kenya',
+          },
+        ],
+      },
+      {
+        id: 'collection-6',
+        date: '2025-01-15',
+        photosList: [
+          {
+            id: 'photo-28',
+            url: 'https://picsum.photos/300/300?random=28',
+            label: 'Temple Visit',
+            location: 'Kyoto',
+          },
+          {
+            id: 'photo-29',
+            url: 'https://picsum.photos/300/300?random=29',
+            label: 'Zen Garden',
+            location: 'Kyoto',
           },
         ],
       },
