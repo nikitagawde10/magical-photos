@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { UsersComponent } from './users.component';
+import { AuthGuard } from './authguard.service';
+import { PhotoGalleryComponent } from './photo-gallery/photo-gallery.component';
 
 const routes: Routes = [
   {
@@ -32,6 +34,11 @@ const routes: Routes = [
           import('./one-day-pass/one-day-pass.component').then(
             (m) => m.OneDayPassComponent
           ),
+      },
+      {
+        path: ':userId/photos/:photoListId',
+        component: PhotoGalleryComponent,
+        canActivate: [AuthGuard],
       },
     ],
   },

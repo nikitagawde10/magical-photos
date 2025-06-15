@@ -1,9 +1,10 @@
+// Updated photos-container.component.ts
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Photo, PhotosList } from '../../user.utils';
 import { CommonModule } from '@angular/common';
 import { SortOrderPipe } from '../../sort-order.pipe';
 import { UserService } from '../../user.service';
-import { Subject, takeUntil } from 'rxjs';
+import { filter, Subject, take, takeUntil } from 'rxjs';
 import { Router } from '@angular/router';
 
 @Component({
@@ -54,6 +55,7 @@ export class PhotosContainerComponent implements OnInit, OnDestroy {
     this.destroy$.next();
     this.destroy$.complete();
   }
+
   trackByPhotoList(index: number, item: PhotosList): string {
     return item.id;
   }
@@ -82,14 +84,29 @@ export class PhotosContainerComponent implements OnInit, OnDestroy {
       });
   }
 
-  openPhotosList(photos: Photo[]): void {
-    console.log('Opening photos list:', photos);
-    // TODO: Implement modal or navigation to detailed photo view
-    // You can create a photo detail service/component here
+  // Updated method to navigate to gallery
+  openPhotosList(photoListId: string): void {
+    const currentUser = this.userService.getCurrentUser();
+    if (currentUser) {
+      // Navigate to the photo gallery with userId and photoListId
+      this.router.navigate(['/users', currentUser.id, 'photos', photoListId]);
+    } else {
+      this.errorMessage = 'Please log in to view photos';
+    }
   }
 
   deletePhotoSelection(photoId: string): void {
+    if (!photoId) return;
+
     if (confirm('Are you sure you want to delete this photo collection?')) {
+      const user = this.userService.getCurrentUser();
+
+      if (!user) {
+        this.errorMessage = 'No user logged in. Please log in again.';
+        this.router.navigate(['/login']);
+        return;
+      }
+
       console.log('Deleting photos list with id ->', photoId);
 
       this.userService
@@ -99,7 +116,7 @@ export class PhotosContainerComponent implements OnInit, OnDestroy {
           next: (success) => {
             if (success) {
               console.log('Photo collection deleted successfully');
-              // The photosList will be automatically updated through the currentUser$ subscription
+              this.loadUserPhotos();
             }
           },
           error: (error) => {

@@ -10,6 +10,7 @@ import { UserPhotosComponent } from './user-photos/user-photos.component';
 import { PhotoPassInputComponent } from './shared/photo-pass-input/photo-pass-input.component';
 import { PhotosContainerComponent } from './shared/photos-container/photos-container.component';
 import { SortOrderPipe } from './sort-order.pipe';
+import { PhotoGalleryComponent } from './photo-gallery/photo-gallery.component';
 
 @NgModule({
   declarations: [],
@@ -25,6 +26,7 @@ import { SortOrderPipe } from './sort-order.pipe';
     UserPhotosComponent,
     PhotoPassInputComponent,
     PhotosContainerComponent,
+    PhotoGalleryComponent,
   ],
 })
 export class UsersModule {}

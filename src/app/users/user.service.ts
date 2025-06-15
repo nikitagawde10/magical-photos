@@ -131,15 +131,9 @@ export class UserService {
 
     return new Observable((observer) => {
       try {
-        // Find and remove the photo from the user's collections
+        // Remove the entire collection whose id matches photoId
         const updatedMasterPhotosList = currentUser.masterPhotosList
-          .map((photoList) => ({
-            ...photoList,
-            photosList: photoList.photosList.filter(
-              (photo) => photo.id !== photoId
-            ),
-          }))
-          .filter((photoList) => photoList.photosList.length > 0); // Remove empty collections
+          .filter((photoList) => photoList.id !== photoId);
 
         const updatedUser: User = {
           ...currentUser,

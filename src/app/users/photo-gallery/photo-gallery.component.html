@@ -1,0 +1,183 @@
+<!-- photo-gallery.component.html -->
+<div class="photo-gallery-container">
+  <!-- Loading state -->
+  <div *ngIf="isLoading" class="loading-container text-center p-4">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    <p class="mt-2">Loading photo gallery...</p>
+  </div>
+
+  <!-- Error state -->
+  <div
+    *ngIf="errorMessage && !isLoading"
+    class="alert alert-danger"
+    role="alert"
+  >
+    <div class="d-flex justify-content-between align-items-center">
+      <span>{{ errorMessage }}</span>
+      <button
+        type="button"
+        class="btn btn-sm btn-outline-danger"
+        (click)="loadPhotoCollection()"
+      >
+        Retry
+      </button>
+    </div>
+  </div>
+
+  <!-- Gallery content -->
+  <div *ngIf="photoCollection && !isLoading" class="gallery-content">
+    <!-- Header -->
+    <div class="gallery-header mb-4">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <div>
+          <button class="btn btn-outline-secondary me-3" (click)="goBack()">
+            <i class="bi bi-arrow-left"></i> Back to Collections
+          </button>
+          <h2 class="d-inline-block mb-0">
+            Collection {{ photoCollection.id }}
+          </h2>
+        </div>
+        <div class="collection-info text-muted">
+          <i class="bi bi-calendar-event me-2"></i>{{ photoCollection.date }}
+        </div>
+      </div>
+
+      <!-- Action buttons -->
+      <div class="d-flex justify-content-center mb-4">
+        <div class="button-group" role="group" aria-label="Photo actions">
+          <button
+            type="button"
+            class="btn btn-primary"
+            (click)="toggleSelectMode()"
+          >
+            {{ isSelectMode ? "Cancel Select" : "Select" }}
+          </button>
+          <button
+            type="button"
+            class="btn btn-danger"
+            (click)="selectAllPhotos()"
+          >
+            Select All
+          </button>
+          <button
+            *ngIf="isSelectMode"
+            type="button"
+            class="btn btn-secondary"
+            (click)="clearAllPhotos()"
+          >
+            Clear All
+          </button>
+          <button type="button" class="btn btn-success">Download</button>
+          <div class="countOfSelectedPictures ms-3">
+            <span class="fs-4 fw-bold text-primary">{{
+              countOfSelectedPictures
+            }}</span>
+            <small class="text-muted d-block">selected</small>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Photos grid -->
+    <div class="photos-grid">
+      <div class="row g-3">
+        <div
+          *ngFor="let photo of photos; let i = index; trackBy: trackByPhoto"
+          class="col-6 col-md-4 col-lg-3 col-xl-2"
+        >
+          <div
+            class="photo-card card h-100"
+            [class.selected]="selectedPhotos.has(photo.id)"
+            (click)="
+              isSelectMode ? togglePhotoSelection(photo.id) : openCarousel(i)
+            "
+          >
+            <div class="img-wrapper position-relative">
+              <img
+                [src]="photo.url"
+                [alt]="photo.label"
+                class="card-img-top photo-img"
+                loading="lazy"
+              />
+
+              <!-- Selection checkbox -->
+              <div *ngIf="isSelectMode" class="checkbox-overlay">
+                <input
+                  type="checkbox"
+                  [checked]="selectedPhotos.has(photo.id)"
+                  (change)="togglePhotoSelection(photo.id)"
+                  (click)="$event.stopPropagation()"
+                />
+              </div>
+
+              <!-- Photo info overlay -->
+              <div class="content-overlay">
+                <small class="text-white">
+                  {{ photo.location }}<br />
+                  {{ photoCollection.date | date }}
+                </small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Empty state -->
+    <div *ngIf="photos.length === 0" class="empty-state text-center p-5">
+      <i class="bi bi-images" style="font-size: 4rem; color: #ccc"></i>
+      <h3 class="mt-3 text-muted">No Photos in Collection</h3>
+      <p class="text-muted">This collection appears to be empty.</p>
+    </div>
+  </div>
+
+  <!-- Image carousel modal -->
+  <div
+    *ngIf="showCarousel && currentPhoto"
+    class="carousel-modal"
+    (click)="closeCarousel()"
+  >
+    <div class="carousel-content" (click)="$event.stopPropagation()">
+      <!-- Close button -->
+      <button class="carousel-close" (click)="closeCarousel()">
+        <i class="bi bi-x-lg"></i>
+      </button>
+
+      <!-- Navigation arrows -->
+      <button
+        class="carousel-prev"
+        (click)="previousImage()"
+        *ngIf="photos.length > 1"
+      >
+        <i class="bi bi-chevron-left"></i>
+      </button>
+      <button
+        class="carousel-next"
+        (click)="nextImage()"
+        *ngIf="photos.length > 1"
+      >
+        <i class="bi bi-chevron-right"></i>
+      </button>
+
+      <!-- Current image -->
+      <div class="carousel-image-container">
+        <img
+          [src]="currentPhoto.url"
+          [alt]="currentPhoto.label"
+          class="carousel-image"
+        />
+      </div>
+
+      <!-- Image info -->
+      <div class="carousel-info">
+        <h5>{{ currentPhoto.label }}</h5>
+        <p class="text-muted mb-1">{{ currentPhoto.location }}</p>
+        <small class="text-muted">
+          {{ currentImageIndex + 1 }} of {{ photos.length }}
+        </small>
+      </div>
+    </div>
+  </div>
+</div>
