@@ -1,0 +1,90 @@
+<!-- login.component.html -->
+<div class="login-container">
+  <div class="login-card">
+    <h2 class="login-title">Login</h2>
+
+    <!-- Error message display -->
+    <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+      {{ errorMessage }}
+    </div>
+
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+      <div class="form-group mb-3">
+        <label for="mobileNumber" class="form-label">Mobile Number</label>
+        <input
+          type="tel"
+          id="mobileNumber"
+          class="form-control"
+          formControlName="mobileNumber"
+          placeholder="Enter your mobile number"
+          [class.is-invalid]="mobileNumber?.invalid && mobileNumber?.touched"
+        />
+        <div
+          *ngIf="mobileNumber?.invalid && mobileNumber?.touched"
+          class="invalid-feedback"
+        >
+          <div *ngIf="mobileNumber?.errors?.['required']">
+            Mobile number is required
+          </div>
+          <div *ngIf="mobileNumber?.errors?.['pattern']">
+            Please enter a valid 10-digit mobile number
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input
+          type="password"
+          id="password"
+          class="form-control"
+          formControlName="password"
+          placeholder="Enter your password"
+          [class.is-invalid]="password?.invalid && password?.touched"
+        />
+        <div
+          *ngIf="password?.invalid && password?.touched"
+          class="invalid-feedback"
+        >
+          <div *ngIf="password?.errors?.['required']">Password is required</div>
+          <div *ngIf="password?.errors?.['minlength']">
+            Password must be at least 4 characters long
+          </div>
+        </div>
+      </div>
+
+      <div class="button-group">
+        <button
+          type="submit"
+          class="btn btn-primary"
+          [disabled]="loginForm.invalid || isLoading"
+        >
+          <span
+            *ngIf="isLoading"
+            class="spinner-border spinner-border-sm me-2"
+            role="status"
+          ></span>
+          {{ isLoading ? "Logging in..." : "Login" }}
+        </button>
+
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="onCancel()"
+          [disabled]="isLoading"
+        >
+          Cancel
+        </button>
+      </div>
+    </form>
+
+    <div class="register-link">
+      <p>
+        Don't have an account?
+        <a href="#" (click)="registerUser()" [class.disabled]="isLoading"
+          >Register here</a
+        >
+      </p>
+    </div>
+  </div>
+</div>

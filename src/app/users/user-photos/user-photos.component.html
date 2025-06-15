@@ -1,0 +1,77 @@
+<div class="container mt-4">
+  <p>
+    If you wish to purchase a Disney PhotoPass One Day Pass, please proceed to
+    Carefree Corner, Bibbidi Bobbidi Boutique, Power Supplies, Intergalactic
+    Imports or Tinker Bell Gifts for purchase on the day of your visit.
+  </p>
+
+  <div *ngIf="photosMasterList$ | async as photosMasterList">
+    <div class="d-flex justify-content-center mb-4">
+      <div class="button-group" role="group" aria-label="Photo actions">
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="toggleSelectMode(photosMasterList)"
+        >
+          {{ isSelectMode ? "Cancel Select" : "Select" }}
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger"
+          (click)="selectAllPhotos()"
+        >
+          Select All
+        </button>
+        <button
+          *ngIf="isSelectMode"
+          type="button"
+          class="btn btn-secondary"
+          (click)="clearAllPhotos()"
+        >
+          Clear All
+        </button>
+        <button type="button" class="btn btn-success">Download</button>
+        <div class="countOfSelectedPictures">
+          <p class="fs-3 fw-bolder">{{ countOfPictures }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div *ngFor="let photoGroup of photosMasterList | sortOrder">
+      <h3>{{ photoGroup.id }} — {{ photoGroup.date | date : "yyyy-MM-dd" }}</h3>
+
+      <div class="row">
+        <div
+          *ngFor="let photo of photoGroup.photosList"
+          class="col-6 col-md-4 col-lg-3 mb-4"
+        >
+          <div
+            class="card h-100"
+            [class.selected]="selectedPhotos.has(photo.id)"
+          >
+            <div class="img-wrapper">
+              <img
+                [src]="photo.url"
+                [alt]="photo.label"
+                class="card-img-top photo-img"
+              />
+
+              <div *ngIf="isSelectMode" class="checkbox-overlay">
+                <input
+                  type="checkbox"
+                  [checked]="selectedPhotos.has(photo.id)"
+                  (change)="togglePhotoSelection(photo.id)"
+                />
+              </div>
+
+              <div class="content slide-bottom">
+                {{ photo.location }} <br />
+                {{ photoGroup.date | date }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

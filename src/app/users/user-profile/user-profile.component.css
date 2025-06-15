@@ -1,0 +1,51 @@
+.registration-container {
+  width: 460px;
+  margin: 40px auto;
+}
+
+.card-body {
+  padding: 30px 40px;
+  border: 1px solid gainsboro;
+}
+
+.form-label {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.form-check-label {
+  font-size: 14px;
+}
+
+.form-check {
+  margin-top: 20px;
+}
+.submit-button {
+  background: linear-gradient(to bottom, #2ca6df, #167ac6);
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 22px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 12px 20px;
+  font-size: 1rem;
+}
+
+.input-group-text {
+  background-color: #e9ecef;
+  border-color: #ced4da;
+}
+
+.input-group .form-control {
+  border-color: #ced4da;
+}
+
+.input-group .btn {
+  border-color: #ced4da;
+  background-color: white;
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-around;
+}

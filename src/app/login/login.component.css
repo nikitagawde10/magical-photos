@@ -1,0 +1,35 @@
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid gainsboro;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 4px;
+  width: 560px;
+  font-size: 12px;
+  padding: 27px;
+  border-radius: 12px;
+  margin: 0px auto;
+}
+
+.prependedNumber {
+  border-radius: 0%;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.button-group {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-around;
+}
+.row {
+  margin-bottom: 5px 0px 5px 0px;
+}
+.link-primary:hover {
+  cursor: pointer;
+}

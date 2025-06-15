@@ -1,0 +1,99 @@
+.header-container {
+  width: 940px;
+  height: 71px;
+  margin: auto;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 4px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.top-right-content {
+  display: flex;
+  justify-content: flex-end;
+  height: 25px;
+}
+
+.bottom-content {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  max-height: 36px;
+  align-items: center;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  max-width: 100%;
+}
+
+.logo-container:hover {
+  cursor: pointer;
+}
+
+.desktop-menu {
+  display: flex;
+  padding: 0;
+  flex-direction: row;
+  align-items: center;
+}
+
+.nav-link-top,
+.nav-link-top:visited {
+  color: rgb(50, 62, 72);
+  font-size: 16px;
+  font-weight: 400;
+  text-decoration: none;
+}
+
+.nav-link-top:hover,
+.nav-link-top:active {
+  color: rgb(0, 123, 255);
+  text-decoration: underline;
+}
+
+.nav-link {
+  color: rgb(50, 62, 72);
+  font-size: 16px;
+  font-weight: 400;
+  text-decoration: none;
+  transition: color 0.2s ease, text-decoration 0.2s ease;
+}
+
+.nav-link:hover,
+.nav-link:active {
+  color: rgb(0, 123, 255);
+  text-decoration: underline;
+}
+
+a.nav-link.router-link-active,
+.nav-item.active .nav-link {
+  color: rgb(0, 123, 255);
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.vr {
+  border-left: 1px solid #ccc;
+  height: 16px;
+  margin: 0 8px;
+}
+
+.nav-item {
+  margin: 3px;
+}
+
+.logo-image {
+  width: 140px;
+  height: auto;
+}
+
+.links-menu .nav-link {
+  color: rgb(0, 123, 255);
+}
+.links-menu .nav-link:hover {
+  cursor: pointer;
+  text-decoration: none;
+  font-weight: bolder;
+}

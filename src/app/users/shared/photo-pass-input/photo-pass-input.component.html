@@ -1,0 +1,27 @@
+<div class="form-group mb-3">
+  <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+    <div formArrayName="inputs">
+      <label class="form-label">Please enter the number</label>
+      <div
+        *ngFor="let input of inputControls.controls; let i = index"
+        [formGroupName]="i"
+        class="mb-2 w-25"
+      >
+        <input
+          class="form-control"
+          formControlName="value"
+          id="photo-pass-number-{{ i }}"
+          required
+        />
+      </div>
+    </div>
+    <div class="actions-container">
+      <a class="btn add-input-button w-10" (click)="addInput()">
+        <i class="bi bi-plus-circle me-1"></i> Add Another
+      </a>
+      <button class="btn btn-success mt-3 submit-button" type="submit">
+        Submit
+      </button>
+    </div>
+  </form>
+</div>

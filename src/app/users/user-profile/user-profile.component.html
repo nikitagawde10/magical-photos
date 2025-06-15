@@ -1,0 +1,141 @@
+<div class="registration-container card shadow">
+  <div class="card-body">
+    <h3 class="card-title text-center mb-4">Basic Profile</h3>
+    <form [formGroup]="profileForm" (ngSubmit)="onProfileEdited()">
+      <div class="form-group mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          formControlName="name"
+        />
+      </div>
+      <div class="row mb-3">
+        <div class="form-group">
+          <label for="email" class="form-label">Email</label>
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            formControlName="email"
+          />
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="form-group">
+          <label for="mobile-number" class="form-label">Mobile Number</label>
+          <input
+            type="number"
+            class="form-control"
+            id="mobile-number"
+            formControlName="mobile"
+          />
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <label class="form-label">Gender</label>
+        <div class="d-flex gap-4">
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              id="female"
+              formControlName="gender"
+              value="female"
+              name="gender"
+            />
+            <label class="form-check-label" for="female">Female</label>
+          </div>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              id="male"
+              formControlName="gender"
+              value="male"
+              name="gender"
+            />
+            <label class="form-check-label" for="male">Male</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="form-group">
+          <label for="birth-date" class="form-label">Birth Date</label>
+          <input
+            type="date"
+            class="form-control"
+            id="date-picker"
+            formControlName="birthDate"
+          />
+        </div>
+      </div>
+      <div class="form-check">
+        <input
+          type="checkbox"
+          class="form-check-input"
+          id="subscriptionCheck"
+          formControlName="subscriptionCheck"
+        />
+        <label class="form-check-label" for="subscriptionCheck">
+          I would like to unsubscribe from all Disney PhotoPass notifications
+        </label>
+      </div>
+      <div class="button-group mt-3">
+        <button
+          type="button"
+          (click)="onCancel()"
+          class="btn btn-outline-secondary btn-sm"
+        >
+          Cancel
+        </button>
+        <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="password-container card shadow mt-3">
+    <div class="card-body">
+      <h3 class="card-title text-center mb-4">Modify Password</h3>
+      <form [formGroup]="passwordForm" (ngSubmit)="onPasswordChanged()">
+        <div class="form-group mb-3">
+          <label for="password" class="form-label">Old Password</label>
+          <input
+            type="text"
+            class="form-control"
+            id="password"
+            formControlName="oldPassword"
+          />
+        </div>
+        <div class="row mb-3">
+          <div class="form-group">
+            <label for="password" class="form-label">New Password</label>
+            <input
+              type="text"
+              class="form-control"
+              id="newPassword"
+              formControlName="newPassword"
+            />
+          </div>
+        </div>
+        <div class="row mb-3 mt-3">
+          <div class="form-group">
+            <label for="confirm-new-password" class="form-label"
+              >Confirm New Password</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="confirm-new-password"
+              formControlName="newPassword"
+            />
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>

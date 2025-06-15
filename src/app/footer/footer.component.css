@@ -1,0 +1,17 @@
+.card-footer {
+  width: 940px;
+  margin: auto;
+  font-size: 12px;
+}
+
+.links-menu {
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 20px;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.nav-link:hover {
+  cursor: pointer;
+  color: rgb(0, 123, 255);
+}

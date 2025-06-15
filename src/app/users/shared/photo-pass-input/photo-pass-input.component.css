@@ -1,0 +1,14 @@
+.add-input-button {
+  color: rgb(25, 146, 213);
+  text-align: left;
+}
+
+.submit-button {
+  width: 90px;
+  align-self: center;
+}
+
+.actions-container {
+  display: flex;
+  flex-direction: column;
+}
