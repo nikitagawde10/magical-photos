@@ -1,4 +1,3 @@
-<!-- photo-gallery.component.html -->
 <div class="photo-gallery-container">
   <!-- Loading state -->
   <div *ngIf="isLoading" class="loading-container text-center p-4">
@@ -88,7 +87,7 @@
           class="col-6 col-md-4 col-lg-3 col-xl-2"
         >
           <div
-            class="photo-card card h-100"
+            class="photo-card card"
             [class.selected]="selectedPhotos.has(photo.id)"
             (click)="
               isSelectMode ? togglePhotoSelection(photo.id) : openCarousel(i)

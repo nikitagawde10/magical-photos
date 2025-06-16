@@ -1,10 +1,9 @@
-// Updated photos-container.component.ts
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Photo, PhotosList } from '../../user.utils';
 import { CommonModule } from '@angular/common';
 import { SortOrderPipe } from '../../sort-order.pipe';
 import { UserService } from '../../user.service';
-import { filter, Subject, take, takeUntil } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 import { Router } from '@angular/router';
 
 @Component({

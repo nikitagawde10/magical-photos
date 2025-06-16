@@ -29,7 +29,5 @@
   justify-content: center;
 }
 .photo-list-container {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
+  margin-right: 25px;
 }

@@ -14,7 +14,6 @@ export class PhotoPassComponent {
   photosList: PhotosList[] = [];
 
   constructor(private userService: UserService) {
-    //FIXME: add service to use behaviorSubject to get logged in user
     this.userService.getUserPhotos().subscribe((photos: PhotosList[]) => {
       this.photosList = photos;
     });

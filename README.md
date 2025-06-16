@@ -14,8 +14,12 @@ Once the server is running, open your browser and navigate to `http://localhost:
 
 ## User credentials
 
-| Mobile Number        | Password       
-| ------------- |:-------------:| 
-| 1234567890      | password123  
-| 9876543210      | mypassword      
-| 1111111111 | demo     
+| Mobile Number |  Password   |
+| ------------- | :---------: |
+| 1234567890    | password123 |
+| 9876543210    | mypassword  |
+| 1111111111    |    demo     |
+
+## Website link
+
+View the website here `https://magical-photos.netlify.app/`

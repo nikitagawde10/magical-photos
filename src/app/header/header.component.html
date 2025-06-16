@@ -1,4 +1,5 @@
 <div class="header-container p-1" id="header">
+  <!-- Top right content - desktop only -->
   <div class="top-right-content">
     <ul class="navbar-nav links-menu flex-row align-items-center">
       <li *ngIf="!isAuthenticated" class="nav-item">
@@ -23,17 +24,26 @@
     </ul>
   </div>
 
+  <!-- Bottom content -->
   <div class="bottom-content">
-    <div class="logo-container">
-      <img
-        *ngIf="logo"
-        [src]="logo"
-        [routerLink]="[isAuthenticated ? '/users' : '/']"
-        alt="Logo"
-        class="logo-image nav-link"
-      />
+    <!-- Mobile Hamburger -->
+    <div class="mobile-menu-toggle" (click)="toggleMobileMenu()">
+      <div class="hamburger" [class.open]="isMobileMenuOpen">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
     </div>
 
+    <!-- Logo -->
+    <div
+      class="logo-container"
+      [routerLink]="[isAuthenticated ? '/users' : '/']"
+    >
+      <img *ngIf="logo" [src]="logo" alt="Logo" class="logo-image nav-link" />
+    </div>
+
+    <!-- Desktop Menu -->
     <ul class="navbar-nav ml-auto mt-0 desktop-menu">
       <li routerLinkActive="active" class="nav-item">
         <a [routerLink]="['/about']" class="nav-link">About PhotoPass</a>
@@ -41,9 +51,69 @@
       <li routerLinkActive="active" class="nav-item">
         <a [routerLink]="['/gallery']" class="nav-link">Photo</a>
       </li>
-      <li routerLinkActive="active" class="nav-item" *ngIf="isAuthenticated">
+      <li *ngIf="isAuthenticated" routerLinkActive="active" class="nav-item">
         <a [routerLink]="['/users']" class="nav-link">Me</a>
       </li>
     </ul>
+
+    <!-- Spacer for alignment -->
+    <div class="mobile-menu-spacer"></div>
   </div>
 </div>
+
+<!-- Mobile Slide-out Menu -->
+<div class="mobile-menu" [class.mobile-menu-open]="isMobileMenuOpen">
+  <div class="mobile-menu-header">
+    {{ isAuthenticated ? "Welcome " + userDisplayName : "Welcome Guest" }}
+  </div>
+  <div class="mobile-menu-items">
+    <div class="mobile-menu-item">
+      <a
+        class="mobile-nav-link"
+        routerLink="/about"
+        (click)="closeMobileMenu()"
+      >
+        <span class="mobile-nav-icon">📋</span> About Disney PhotoPass
+      </a>
+    </div>
+    <div class="mobile-menu-item">
+      <a
+        class="mobile-nav-link"
+        routerLink="/gallery"
+        (click)="closeMobileMenu()"
+      >
+        <span class="mobile-nav-icon">📷</span> Photo
+      </a>
+    </div>
+    <div class="mobile-menu-item" *ngIf="isAuthenticated">
+      <a
+        class="mobile-nav-link"
+        routerLink="/users"
+        (click)="closeMobileMenu()"
+      >
+        <span class="mobile-nav-icon">👤</span> Me
+      </a>
+    </div>
+    <div class="mobile-menu-item">
+      <a
+        class="mobile-nav-link"
+        routerLink="/changeLanguage"
+        (click)="closeMobileMenu()"
+      >
+        <span class="mobile-nav-icon">🌐</span> 简体中文
+      </a>
+    </div>
+    <div class="mobile-menu-item" *ngIf="isAuthenticated">
+      <a class="mobile-nav-link" (click)="logout(); closeMobileMenu()">
+        <span class="mobile-nav-icon">🚪</span> Logout
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- Mobile Menu Overlay -->
+<div
+  class="mobile-menu-overlay"
+  [class.mobile-menu-overlay-open]="isMobileMenuOpen"
+  (click)="closeMobileMenu()"
+></div>
