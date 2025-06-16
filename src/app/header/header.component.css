@@ -97,3 +97,10 @@ a.nav-link.router-link-active,
   text-decoration: none;
   font-weight: bolder;
 }
+.vr {
+  border-left: 2px solid black;
+  height: 16px;
+  margin: 0 8px;
+  display: flex;
+  align-self: center;
+}
