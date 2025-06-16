@@ -1,5 +1,5 @@
 .child-routes-container {
-  width: 940px;
+  max-width: 940px;
   border-radius: 4px;
 }
 

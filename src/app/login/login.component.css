@@ -4,7 +4,7 @@
   align-items: center;
   border: 1px solid gainsboro;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 4px;
-  width: 560px;
+  max-width: 560px;
   font-size: 12px;
   padding: 27px;
   border-radius: 12px;
