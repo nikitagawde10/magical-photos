@@ -36,7 +36,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.currentUser = user;
       });
 
-    // Load logo (you can replace this with your actual logo)
     this.loadLogo();
   }
 
@@ -54,11 +53,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.router.navigate(['/']);
   }
 
-  navigateToProfile(): void {
-    if (this.isAuthenticated) {
-      this.router.navigate(['/users']);
-    }
-  }
+  // navigateToProfile(): void {
+  //   if (this.isAuthenticated) {
+  //     this.router.navigate(['/users']);
+  //   }
+  // }
 
   get userDisplayName(): string {
     return this.currentUser?.name || 'User';
